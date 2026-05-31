@@ -1,23 +1,43 @@
 {
 	"builds": [
 		{
-			"name": "Build 1",
-			"version": "1.0",
+			"name": "BIG BUILD >>>> Movies, TV, Sport, Live TV <<<< (easybuild)",
+			"version": "4.0",
 			"kodi": "K21",
-			"url": "http://",
-			"icon": "http://",
-			"fanart": "http://",
-			"description": "The first build. You need a comma after the curly bracket if this is not the last build.",
+			"url": "https://www.dropbox.com/scl/fi/o7gbwm0fmfg1g5m6npu5f/arctic-zephyr.mod-skin-4.0-21.2-easybuild.zip?rlkey=6p8vs2no7uin7zlzrntrmx1fz&st=mbf53map&dl=1",
+			"icon": "https://www.dropbox.com/scl/fi/3i51nay0sqqrwgc8kkc0s/family-easybuild-build.jpg?rlkey=a83l8xicm171llgnmvywz2mh8&dl=1",
+			"fanart": "https://www.dropbox.com/s/od0n0p277s5fblr/fanart.jpg?dl=1",
+			"description": "BIG BUILD Movie, TV, Sport, Live TV.(family easybuild wizard)",
 			"preview": "http://"
+		},
+		{
+			"name": "DO NOT USE BELOW THIS. >>>>>>>>TESTING ONLY<<<<<<<<<<",
+			"version": "----------------------------------------------------",
+			"kodi": "------------------------",
+			"url": "------------------------",
+			"icon": "------------------------",
+			"fanart": "------------------------",
+			"description": "------------------------",
+			"preview": "------------------------"
 		},
 		{
 			"name": "Build 2",
 			"version": "1.0",
 			"kodi": "K21",
-			"url": "http://",
-			"icon": "http://",
-			"fanart": "http://",
-			"description": "The second build. No comma after the curly bracket if this is the last build.",
+			"url": "???????????????????????????????????????????????????????????????????????????",
+			"icon": "https://www.dropbox.com/scl/fi/sircicarrequ27kezyj40/simon-s-testing-build-update.png?rlkey=c1j4v73k1qh8l1hahozshdrgc&st=91p8vj4c&dl=1",
+			"fanart": "https://www.dropbox.com/s/od0n0p277s5fblr/fanart.jpg?dl=1",
+			"description": "DO NOT USE BELOW THIS TESTING ONLY (family easybuild wizard)",
+			"preview": "http://"
+		},
+		{
+			"name": "Simon's Box's, easybuild (arctic.zephyr.mod skin)",
+			"version": "4.1",
+			"kodi": "K21",
+			"url": "https://www.dropbox.com/scl/fi/3u3urnk8sf3uzf4uktl1z/arctic-zephyr.mod-skin-4.1-21.2-easybuild.zip?rlkey=8fl4cti01477del8x6qrt8ya5&st=noy29sw1&dl=1",
+			"icon": "https://www.dropbox.com/scl/fi/3i51nay0sqqrwgc8kkc0s/family-easybuild-build.jpg?rlkey=a83l8xicm171llgnmvywz2mh8&dl=1",
+			"fanart": "https://www.dropbox.com/s/od0n0p277s5fblr/fanart.jpg?dl=1",
+			"description": "bedroom tv, front room tv, kitchen tv, garage tv, tablets (family easybuild wizard)",
 			"preview": "http://"
 		}
 	]

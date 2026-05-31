@@ -1,3 +1,40 @@
-1
+11
 |||
-Place yours notifications below the 3 lines. Raise the value of the number above the 3 lines to prompt a popup on Kodi startup. Host this file and add the url to the notify_url variable located in the addonvar.py file. 
+
+Family Easybuild Notification
+
+-----------------------------------------
+     ______UPDATE______ 
+       TO BE INSTALLED
+-----------------------------------------
+
+11-may26  > removed fenlight addon (broken not working
+            installed The gears addon
+23-jan-26 > Added to favourites (LAW GOTTA WATCH)
+          > search added (people search)
+		  > saved accounts updated 
+		  > update 3.7
+		  
+
+
+		  
+05-Dec-25  > Fen out of date full up date with fen light fm.
+           > Added a random movie or TV show section in movies or tv shows.
+           > you need to authorise Trakt and real debride go to authorise accounts section 
+	     and then look for them both in the settings.
+           > update 3.2
+28-sept-25 > updated live tv and sports section
+           > added Authorize section 
+	   > fixed trakt on muiltiple devices (sign in to trakt TMDP Helper and then Fen)
+           > update 2.2
+06-aug-25 > added to live tv stopped firestick low storage on live tv 1.8
+14-02-25 > updated live tv 1.7
+13-01-25 > UPDATED Wizard and live tv working 1.6
+27-12-24 > fixed resolverURL error (updated the dependancys) , added live tv channel list 
+06-05-24 > new update downloader.py to fix dropbox not working
+06-05-24 > removed magic dragan and asgard addons and installed titan sports 
+10-02-24 > small build started for devices will low memory
+19-11-23 > github started hosting wizard
+
+
+
