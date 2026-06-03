@@ -32,6 +32,9 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Test repository generator
+        run: python -m unittest tools.test_generate_repo
+
       - name: Generate Kodi repository
         working-directory: tools
         run: python generate_repo.py
@@ -53,6 +56,11 @@ jobs:
           test -f "${KODI_REPO_OUTPUT_PATH}addons.xml"
           test -f "${KODI_REPO_OUTPUT_PATH}addons.xml.md5"
           test -f "${KODI_REPO_OUTPUT_PATH}${KODI_REPO_ID}/${repo_zip}"
+          test -f "${KODI_REPO_OUTPUT_PATH}${KODI_REPO_ID}/icon.png"
+          test -f "${KODI_REPO_OUTPUT_PATH}${KODI_REPO_ID}/fanart.jpg"
+          test -f "${KODI_REPO_OUTPUT_PATH}plugin.program.easybuild/resources/icon.png"
+          test -f "${KODI_REPO_OUTPUT_PATH}plugin.program.easybuild/resources/fanart.jpg"
+          test -f "${KODI_REPO_OUTPUT_PATH}plugin.program.easybuild/resources/screenshot-01.jpg"
           test -f "${repo_zip}"
           grep -F "version=\"${KODI_REPO_VERSION}\"" "${KODI_REPO_ID}/addon.xml"
           grep -F "version=\"${KODI_REPO_VERSION}\"" "${KODI_REPO_OUTPUT_PATH}${KODI_REPO_ID}/addon.xml"

@@ -75,7 +75,42 @@ class Generator:
         if not os.path.exists(self.addonid):
             os.makedirs(self.addonid)
 
+        self._copy_repository_artwork()
         self._save_file(repo_xml, file=self.addonid + os.path.sep + "addon.xml")
+
+    def _copy_repository_artwork(self):
+        for asset in ("icon.png", "fanart.jpg"):
+            target = os.path.join(self.addonid, asset)
+            if os.path.isfile(target):
+                continue
+
+            source = self._find_repository_artwork(asset)
+            if source:
+                shutil.copy(source, target)
+            else:
+                print("**** " + asset + " missing for " + self.addonid)
+
+    def _find_repository_artwork(self, asset):
+        candidates = []
+        configured_path = os.environ.get("KODI_REPO_ASSETS_PATH")
+        if configured_path:
+            candidates.append(configured_path)
+        candidates.append("repository.myrepo")
+        candidates.extend(
+            entry
+            for entry in os.listdir(".")
+            if entry.startswith("repository.") and entry != self.addonid
+        )
+
+        seen = set()
+        for candidate in candidates:
+            if not candidate or candidate in seen:
+                continue
+            seen.add(candidate)
+            source = os.path.join(candidate, asset)
+            if os.path.isfile(source):
+                return source
+        return None
 
     def _generate_zip_files(self):
         addons = os.listdir(".")
@@ -115,15 +150,47 @@ class Generator:
                 os.rename(output_zip, output_zip + "." + datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
             shutil.move(filename, output_zip)
             shutil.copy(addonid + "/addon.xml", addon_output_path + os.path.sep + "addon.xml")
-
-            for asset in ("icon.png", "fanart.jpg"):
-                try:
-                    shutil.copy(addonid + "/" + asset, addon_output_path + os.path.sep + asset)
-                except Exception:
-                    print("**** " + asset + " missing for " + addonid)
+            self._copy_declared_assets(addonid, addon_output_path)
         except Exception:
             failure = traceback.format_exc()
             print("Kodi Repo Generator Exception:\n" + str(failure))
+
+    def _copy_declared_assets(self, addonid, addon_output_path):
+        addon_root = os.path.abspath(addonid)
+        output_root = os.path.abspath(addon_output_path)
+        document = minidom.parse(os.path.join(addonid, "addon.xml"))
+        asset_paths = []
+
+        for assets_node in document.getElementsByTagName("assets"):
+            for asset_node in assets_node.childNodes:
+                if asset_node.nodeType != asset_node.ELEMENT_NODE:
+                    continue
+                asset_path = self._node_text(asset_node).strip()
+                if asset_path:
+                    asset_paths.append(asset_path)
+
+        for asset_path in dict.fromkeys(asset_paths):
+            source = os.path.abspath(os.path.normpath(os.path.join(addonid, asset_path)))
+            if not source.startswith(addon_root + os.path.sep) or not os.path.isfile(source):
+                print("**** " + asset_path + " missing for " + addonid)
+                continue
+
+            target = os.path.abspath(os.path.normpath(os.path.join(addon_output_path, asset_path)))
+            if not target.startswith(output_root + os.path.sep):
+                print("**** skipped unsafe asset path " + asset_path + " for " + addonid)
+                continue
+
+            target_dir = os.path.dirname(target)
+            if not os.path.exists(target_dir):
+                os.makedirs(target_dir)
+            shutil.copy(source, target)
+
+    def _node_text(self, node):
+        return "".join(
+            child.data
+            for child in node.childNodes
+            if child.nodeType == child.TEXT_NODE
+        )
 
     def _generate_addons_file(self):
         addons_xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<addons>\n"
